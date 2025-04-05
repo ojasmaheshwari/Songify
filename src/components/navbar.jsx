@@ -54,7 +54,11 @@ const Navbar = () => {
               className="w-full bg-slate-800 text-center hover:bg-slate-700 py-1 transition-all"
               key={idx}
             >
-              <Link to={link.href} className="block w-full h-full">
+              <Link
+                to={link.href}
+                className="block w-full h-full"
+                onClick={() => setMenuOpen(false)}
+              >
                 {link.name}
               </Link>
             </li>
