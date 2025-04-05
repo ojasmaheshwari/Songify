@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
+import { Link } from "react-router";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -31,9 +32,9 @@ const Navbar = () => {
         <ul className="hidden md:flex lg:flex flex-row text-white">
           {navLinks.map((link, idx) => (
             <li key={idx}>
-              <a href={link.href} className="px-2">
+              <Link to={link.href} className="px-2">
                 {link.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -53,9 +54,9 @@ const Navbar = () => {
               className="w-full bg-slate-800 text-center hover:bg-slate-700 py-1 transition-all"
               key={idx}
             >
-              <a href={link.href} className="block w-full h-full">
+              <Link to={link.href} className="block w-full h-full">
                 {link.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
