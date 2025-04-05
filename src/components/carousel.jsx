@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GrPrevious, GrNext } from "react-icons/gr";
 
 const Carousel = () => {
@@ -11,20 +11,26 @@ const Carousel = () => {
     const [currentItemIndex, setCurrentItemIndex] = useState(0);
 
     function nextItem() {
-        if (currentItemIndex === items.length - 1) {
-            setCurrentItemIndex(0);
-            return;
-        }
-        setCurrentItemIndex((currentItemIndex) => currentItemIndex + 1);
+        setCurrentItemIndex((currentItemIndex) =>
+            currentItemIndex >= items.length - 1 ? 0 : currentItemIndex + 1
+        );
     }
 
     function previousItem() {
-        if (currentItemIndex === 0) {
-            setCurrentItemIndex(items.length - 1);
-            return;
-        }
-        setCurrentItemIndex((currentItemIndex) => currentItemIndex - 1);
+        setCurrentItemIndex((currentItemIndex) =>
+            currentItemIndex <= 0 ? items.length - 1 : currentItemIndex - 1
+        );
     }
+
+    useEffect(() => {
+        const id = setInterval(() => {
+            nextItem();
+        }, 3000);
+
+        return () => {
+            clearInterval(id);
+        };
+    }, []);
 
     return (
         <>
