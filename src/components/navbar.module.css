@@ -1,0 +1,7 @@
+.menuOpen {
+    height: fit-content;
+}
+
+.menuClose {
+    height: 0;
+}

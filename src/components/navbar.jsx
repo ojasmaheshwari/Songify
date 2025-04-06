@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import { Link } from "react-router";
+import styles from "./navbar.module.css";
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const navLinks = [
         {
             name: "Home",
-            href: "/home",
+            href: "/",
         },
         {
             name: "Your Playlist",
@@ -41,28 +42,31 @@ const Navbar = () => {
             </div>
             <div
                 className={`w-full ${
-                    menuOpen ? "h-auto opacity-100" : "h-0 opacity-0"
-                } transition duration-150 ease-linear`}
+                    menuOpen ? "max-h-64" : "max-h-0"
+                } bg-slate-800 transition-all duration-150 ease-in`}
             >
                 <ul
-                    className={`w-full bg-slate-800 flex flex-col items-center justify-center text-white $${
+                    className={`w-full bg-slate-800 flex flex-col items-center justify-center text-white
+                    ${
                         menuOpen ? "" : "hidden"
-                    }`}
+                    } transition-all duration-150 ease-in`}
                 >
-                    {navLinks.map((link, idx) => (
-                        <li
-                            className="w-full bg-slate-800 text-center hover:bg-slate-700 py-1 transition-all"
-                            key={idx}
-                        >
-                            <Link
-                                to={link.href}
-                                className="block w-full h-full"
-                                onClick={() => setMenuOpen(false)}
-                            >
-                                {link.name}
-                            </Link>
-                        </li>
-                    ))}
+                    {menuOpen
+                        ? navLinks.map((link, idx) => (
+                              <li
+                                  className="w-full bg-slate-800 text-center hover:bg-slate-700 py-1 transition-all"
+                                  key={idx}
+                              >
+                                  <Link
+                                      to={link.href}
+                                      className="block w-full h-full"
+                                      onClick={() => setMenuOpen(false)}
+                                  >
+                                      {link.name}
+                                  </Link>
+                              </li>
+                          ))
+                        : ""}
                 </ul>
             </div>
         </>
